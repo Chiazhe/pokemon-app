@@ -1,48 +1,58 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import { fetchData } from "../../fetchers";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
-import { useFetchPokemonDetail } from "../../hooks/useFetchPokemonDetail";
+import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemonSpecies } from "../../hooks/usePokemonSpecies";
+import UpperComponent from "./UpperComponent";
+import StatsComponent from "./StatsComponent";
+import EvolutionComponent from "./EvolutionComponent";
 
 function PokemonInfo() {
   const { name: pokemonName } = useParams();
 
-  const onSuccess = (data) => {
-    console.log("side effect after success fetching", data);
-  };
-  const onError = (data) => {
-    console.log("side effect after failed fetching", data);
-  };
+  const {
+    isLoading: informationDataIsLoading,
+    isError: informationDataIsError,
+    informationData,
+    typeData,
+    abilityData,
+    prevPokemon,
+    nextPokemon,
+    itemData,
+  } = usePokemon(pokemonName);
 
   const {
-    isLoading,
-    isError,
-    typesData,
-    data: pokemonData,
-  } = useFetchPokemonDetail(pokemonName, onSuccess, onError);
+    isLoading: speciesDataIsLoading,
+    isError: speciesDataIsError,
+    speciesData,
+    evolutionData,
+  } = usePokemonSpecies(pokemonName);
 
-  if (isLoading) return <Loader />;
-  if (isError) return <Error />;
+  if (informationDataIsLoading || speciesDataIsLoading) return <Loader />;
+  if (informationDataIsError || speciesDataIsError) return <Error />;
 
   return (
     <>
-      <h1>{pokemonData.name}</h1>
-      <button
-        onClick={() => {
-          console.log(pokemonData);
-        }}
-      >
-        Check Pokemon Data
-      </button>
-      <button
-        onClick={() => {
-          console.log(typesData);
-        }}
-      >
-        Check Pokemon Type
-      </button>
+      <UpperComponent
+        id={JSON.stringify(informationData.id)}
+        name={informationData.name}
+        description={speciesData.description}
+        abilities={abilityData}
+        types={typeData}
+        height={informationData.height}
+        weight={informationData.weight}
+        shape={speciesData.shape?.name || "Not Applicable"}
+        color={speciesData.color.name}
+        genderless={informationData.gender_rate === -1}
+        heldItem={itemData}
+      />
+      <StatsComponent
+        stats={informationData.stats}
+        image={informationData.sprites.other["official-artwork"].front_default}
+      />
+      <EvolutionComponent evolution={evolutionData} />
+      <button onClick={() => console.log(itemData)}>Chec</button>
     </>
   );
 }

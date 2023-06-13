@@ -1,19 +1,40 @@
-import { useInfiniteQuery } from "react-query";
-import { FETCH_ALL_POKEMON } from "../fetchers";
+import { useInfiniteQuery, useQueries } from "react-query";
+import { fetchAllPokemon, fetchData } from "../fetchers";
 
 export const useAllPokemonData = (onSuccess, onError) => {
-  return useInfiniteQuery(["all-pokemon"], FETCH_ALL_POKEMON, {
-    onSuccess,
+  const {
+    isLoading,
+    isError,
+    data: pokemonData,
+    hasNextPage,
+    fetchNextPage,
+    isFetching,
+    // isFetchingNextPage,
+  } = useInfiniteQuery(["pokemon"], fetchAllPokemon, {
     onError,
-    getNextPageParam: (_lastPage, page) => {
-      return page + 20;
+    onSuccess,
+    getNextPageParam: (lastPage, _allPages) => {
+      return lastPage.next;
     },
-    // getNextPageParam: (prevPage) => {
-    //   console.log("prev page -> next", prevPage.data.next);
-    //   return prevPage.data.next;
-    // },
+    staleTime: Infinity,
     select: (data) => {
+      const res = data?.pages.map((page) =>
+        page.results.map((d) => {
+          return d;
+        })
+      );
+      console.log(res);
       return data;
     },
   });
+
+  return {
+    isLoading,
+    isError,
+    data: pokemonData,
+    hasNextPage,
+    fetchNextPage,
+    isFetching,
+    // isFetchingNextPage,
+  };
 };

@@ -47,7 +47,7 @@ function Navbar() {
         <TbPokeball className="mx-2" />
         <span>PokéApp</span>
       </h1>
-      <div className="flex items-center gap-3 text-lg">
+      <div className="items-center gap-3 text-lg hidden sm:flex ">
         <h3>Pokédex</h3>
         <h3>Types</h3>
         <h3>Locations</h3>

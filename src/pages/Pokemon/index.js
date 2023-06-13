@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
-import { useInfiniteQuery } from "react-query";
-import { fetchAllPokemon } from "../../fetchers";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 import PokemonCard from "./PokemonCard";
+import { useAllPokemonData } from "../../hooks/useFetchAllPokemonData";
 
 function Pokemon() {
   const onSuccess = (pokemonData) => {
@@ -20,15 +19,7 @@ function Pokemon() {
     hasNextPage,
     fetchNextPage,
     isFetching,
-    // isFetchingNextPage,
-  } = useInfiniteQuery(["pokemon"], fetchAllPokemon, {
-    onError,
-    onSuccess,
-    getNextPageParam: (lastPage, _allPages) => {
-      console.log("prev page -> next", lastPage.next);
-      return lastPage.next;
-    },
-  });
+  } = useAllPokemonData(onSuccess, onError);
 
   if (isLoading) {
     return <Loader />;
