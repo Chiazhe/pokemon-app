@@ -23,9 +23,9 @@ export const usePokemon = (pokemonName) => {
         delete data.location_area_encounters;
         return data;
       },
-      onSuccess: (data) => {
-        console.log(data);
-      },
+      // onSuccess: (data) => {
+      //   console.log(data);
+      // },
     }
   );
 
@@ -41,6 +41,30 @@ export const usePokemon = (pokemonName) => {
   const typeDataisLoading = fetchedTypeData.some((query) => query.isLoading);
   const typeDataisError = fetchedTypeData.some((query) => query.isError);
   const typeData = fetchedTypeData.map((data) => data.data);
+
+  // 1a. Process damage relation data
+  const damageRelations =
+    typeData?.map((data) => {
+      return data?.damage_relations;
+    }) || [];
+  const damageRelationsData = damageRelations?.reduce((acc, obj) => {
+    if (!obj) return;
+    Object.entries(obj).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        if (!acc[key]) {
+          acc[key] = [];
+        }
+        value.forEach((item) => {
+          const name = item.name;
+          const unique = !acc[key].includes(name);
+          if (unique) {
+            acc[key].push(name);
+          }
+        });
+      }
+    });
+    return acc;
+  }, {});
 
   // 2. Fetch the abilities data
   const abilityQueries =
@@ -130,5 +154,6 @@ export const usePokemon = (pokemonName) => {
     prevPokemon: prevNextData[0],
     nextPokemon: prevNextData[1],
     itemData,
+    damageRelationsData,
   };
 };

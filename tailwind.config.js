@@ -57,9 +57,18 @@ module.exports = {
           "50%": { transform: "translateY(8px)" },
           "100%": { transform: "translateY(0)" },
         },
+        slideLeft: {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(-100%)",
+          },
+        },
       },
       animation: {
         "up-down": "up 3s linear infinite",
+        left: "slideLeft 500 linear",
       },
     },
   },

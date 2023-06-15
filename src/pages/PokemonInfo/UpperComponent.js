@@ -3,6 +3,7 @@ import {
   decimeters_to_feet,
   hectogram_to_pound,
   image_url_helper,
+  typeImage,
   uppercase_first_letter,
 } from "../../helpers";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
@@ -89,8 +90,9 @@ function UpperComponent({
               {types.map((type) => (
                 <div
                   key={type.name}
-                  className={`text-base text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg bg-${type.name}`}
+                  className={`flex items-center justify-evenly gap-1 text-base text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg bg-${type.name}`}
                 >
+                  {typeImage(type.name)}{" "}
                   {type.name[0].toUpperCase() + type.name.slice(1)}
                 </div>
               ))}

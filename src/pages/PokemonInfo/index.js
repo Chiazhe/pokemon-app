@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
@@ -9,6 +11,11 @@ import StatsComponent from "./StatsComponent";
 import EvolutionComponent from "./EvolutionComponent";
 
 function PokemonInfo() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   const { name: pokemonName } = useParams();
 
   const {
@@ -20,6 +27,7 @@ function PokemonInfo() {
     prevPokemon,
     nextPokemon,
     itemData,
+    damageRelationsData,
   } = usePokemon(pokemonName);
 
   const {
@@ -50,6 +58,7 @@ function PokemonInfo() {
       <StatsComponent
         stats={informationData.stats}
         image={informationData.sprites.other["official-artwork"].front_default}
+        damageRelationsData={damageRelationsData}
       />
       <EvolutionComponent evolution={evolutionData} />
       <button onClick={() => console.log(itemData)}>Chec</button>
