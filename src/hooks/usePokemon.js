@@ -45,7 +45,7 @@ export const usePokemon = (pokemonName) => {
       return data?.damage_relations;
     }) || [];
   const damageRelationsData = damageRelations?.reduce((acc, obj) => {
-    if (!obj || !acc) return;
+    if (!obj || !acc) return null;
     Object.entries(obj).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         if (!acc[key]) {
@@ -76,7 +76,7 @@ export const usePokemon = (pokemonName) => {
   );
   const abilityDataisError = fetchedAbilityData.some((query) => query.isError);
   const abilityData = fetchedAbilityData?.map((data) => {
-    if (!data.data) return;
+    if (!data.data) return null;
     const desc =
       data.data.effect_entries.filter(function (el) {
         return el.language.name === "en";
@@ -119,7 +119,7 @@ export const usePokemon = (pokemonName) => {
   const itemDataisLoading = fetchedItemData.some((query) => query.isLoading);
   const itemDataisError = fetchedItemData.some((query) => query.isError);
   const itemData = fetchedItemData?.map((data) => {
-    if (!data.data) return;
+    if (!data.data) return null;
     const desc = data.data.effect_entries.filter(function (el) {
       return el.language.name === "en";
     })[0].effect;

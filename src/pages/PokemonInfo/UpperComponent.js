@@ -156,7 +156,7 @@ function UpperComponent({
                   {heldItem.map((item) => (
                     <React.Fragment key={item.name}>
                       <div className="flex items-center justify-center text-center bg-rock text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg ">
-                        <img src={item.image} className="" />
+                        <img src={item.image} alt={item.name} />
                         <div>
                           <p>{item.name}</p>
                           <p className="text-xs italic">
@@ -175,6 +175,7 @@ function UpperComponent({
           <div className="flex flex-col">
             <div className="border-solid rounded-xl m-4 drop-shadow-4xl dark:drop-shadow-4xl-dark">
               <img
+                alt={`${name} img`}
                 src={image_url_helper(id)}
                 className="max-h-[40vh] w-[300px] md:w-[350px] "
               />

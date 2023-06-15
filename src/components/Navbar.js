@@ -38,7 +38,7 @@ function Navbar() {
         setTheme("light");
       }
     }
-  }, [theme]);
+  }, [theme, darkQuery.matches, element.classList]);
 
   return (
     <nav

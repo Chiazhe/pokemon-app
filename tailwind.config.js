@@ -4,6 +4,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        xs: "476px",
+        // => @media (min-width: 640px) { ... }
+      },
       dropShadow: {
         "dark-img-shadow": "0 0 1.4rem rgb(255, 255, 255)",
       },
