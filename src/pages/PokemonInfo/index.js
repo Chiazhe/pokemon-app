@@ -9,6 +9,7 @@ import { usePokemonSpecies } from "../../hooks/usePokemonSpecies";
 import UpperComponent from "./UpperComponent";
 import StatsComponent from "./StatsComponent";
 import EvolutionComponent from "./EvolutionComponent";
+import PrevAndNextPokemon from "./PrevAndNextPokemon";
 
 function PokemonInfo() {
   const location = useLocation();
@@ -38,7 +39,8 @@ function PokemonInfo() {
   } = usePokemonSpecies(pokemonName);
 
   if (informationDataIsLoading || speciesDataIsLoading) return <Loader />;
-  if (informationDataIsError || speciesDataIsError) return <Error />;
+  if (informationDataIsError || speciesDataIsError)
+    return <Error pokemonName={pokemonName} />;
 
   return (
     <>
@@ -48,11 +50,17 @@ function PokemonInfo() {
         description={speciesData.description}
         abilities={abilityData}
         types={typeData}
-        height={informationData.height}
-        weight={informationData.weight}
-        shape={speciesData.shape?.name || "Not Applicable"}
-        color={speciesData.color.name}
-        genderless={informationData.gender_rate === -1}
+        height={informationData.height || "Unknown"}
+        weight={informationData.weight || "Unknown"}
+        shape={speciesData.shape?.name || "Unknown"}
+        color={speciesData.color.name || "Unknown"}
+        genderRate={speciesData?.gender_rate}
+        baseExp={informationData.base_experience || "Unknown"}
+        captureRate={speciesData.capture_rate || "Unknown"}
+        baseHappiness={speciesData.base_happiness}
+        hatchCounter={speciesData.hatch_counter || "Unknown"}
+        habitat={speciesData.habitat?.name || "Unknown"}
+        growthRate={speciesData.growth_rate?.name || "Unknown"}
         heldItem={itemData}
       />
       <StatsComponent
@@ -61,7 +69,7 @@ function PokemonInfo() {
         damageRelationsData={damageRelationsData}
       />
       <EvolutionComponent evolution={evolutionData} />
-      <button onClick={() => console.log(itemData)}>Chec</button>
+      <PrevAndNextPokemon prevPokemon={prevPokemon} nextPokemon={nextPokemon} />
     </>
   );
 }

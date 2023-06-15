@@ -30,7 +30,7 @@ function DamageRelation({ damageRelationsData }) {
       </div>
       <div className={`bg-gray-100/50 dark:bg-slate-600 p-6 rounded-lg`}>
         <div className={`${!isShowingAttack ? "hidden" : ""}`}>
-          <p>
+          <div>
             Double Damage To:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.double_damage_to.length === 0 ? (
@@ -38,73 +38,73 @@ function DamageRelation({ damageRelationsData }) {
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.double_damage_to.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             Half Damage To:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.half_damage_to.length === 0 ? (
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.half_damage_to.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             No Damage To:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.no_damage_to.length === 0 ? (
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.no_damage_to.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
+          </div>
         </div>
         <div className={`${isShowingAttack ? "hidden" : ""}`}>
-          <p>
+          <div>
             Double Damage From:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.double_damage_from.length === 0 ? (
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.double_damage_from.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             Half Damage From:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.half_damage_from.length === 0 ? (
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.half_damage_from.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             No Damage From:
             <div className="flex flex-wrap gap-1 mb-4">
               {damageRelationsData?.no_damage_from.length === 0 ? (
                 <DamageRelationItem type={"NIL"} />
               ) : (
                 damageRelationsData?.no_damage_from.map((type) => (
-                  <DamageRelationItem type={type} />
+                  <DamageRelationItem type={type} key={type} />
                 ))
               )}
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </div>

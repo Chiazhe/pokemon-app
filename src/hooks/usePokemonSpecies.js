@@ -23,7 +23,7 @@ export const usePokemonSpecies = (pokemonName) => {
         delete data.form_descriptions;
         delete data.forms_switchable;
         delete data.genera;
-        delete data.habitat;
+        // delete data.habitat;
         delete data.is_baby;
         delete data.is_legendary;
         delete data.is_mythical;

@@ -9,6 +9,7 @@ module.exports = {
       },
       fontFamily: {
         description: ["Radiance", "Noto Sans", "sans-serif"],
+        prevNextName: ["Reaver", "serif"],
       },
       backgroundSize: {
         "50%": "50%",

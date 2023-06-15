@@ -1,10 +1,10 @@
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Pokemon from "./pages/Pokemon";
 import PokemonInfo from "./pages/PokemonInfo";
 import Navbar from "./components/Navbar";
+import General from "./components/General";
 
 const queryClient = new QueryClient();
 
@@ -17,9 +17,10 @@ function App() {
       <Navbar />
       <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/pokemon" element={<Pokemon />} />
+          <Route exact path="/" element={<Pokemon />} />
+          {/* <Route path="/pokemon" element={<Pokemon />} /> */}
           <Route path="/pokemon/:name" element={<PokemonInfo />} />
+          <Route path="*" element={<General />} />
         </Routes>
         <ReactQueryDevtools />
       </QueryClientProvider>

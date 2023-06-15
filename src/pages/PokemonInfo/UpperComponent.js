@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   decimeters_to_feet,
+  getPercentageValue,
   hectogram_to_pound,
   image_url_helper,
   typeImage,
@@ -18,14 +19,24 @@ function UpperComponent({
   weight,
   shape,
   color,
-  genderless,
+  genderRate,
+  baseExp,
+  captureRate,
+  baseHappiness,
+  hatchCounter,
+  habitat,
+  growthRate,
   heldItem,
 }) {
+  const [
+    isShowingMorePokemonPhysicalData,
+    setIsShowingMorePokemonPhysicalData,
+  ] = useState(false);
   return (
     <>
       <div
         className="flex mx-[5vw] my-10 flex-col-reverse gap-[30px]
-            md:flex-row md:justify-evenly md:min-h-60vh md:items-center"
+            md:flex-row md:justify-between md:min-h-60vh md:items-center"
       >
         <div className="md:max-w-[600px]">
           <h2 className="text-2xl text-zinc-500 dark:text-slate-400">
@@ -34,55 +45,90 @@ function UpperComponent({
           <h1 className="text-6xl">{uppercase_first_letter(name)}</h1>
           <p className="mb-12 text-lg">{description}</p>
           <h3 className="text-xl uppercase mb-4">Pokémon Physical</h3>
-          <div
-            className="text-cyan-900 bg-cyan-500 dark:bg-indigo-300 rounded-xl p-12 my-4 text-lg md:p-6 lg:p-8 
-              grid grid-flow-row gap-[4px] grid-cols-[repeat(auto-fill,minmax(180px,1fr))]"
-          >
-            <div>
+
+          <div className="text-cyan-900 bg-cyan-500 dark:bg-indigo-300 rounded-xl p-12 my-4 text-lg md:p-6 lg:p-8 ">
+            <div className="grid grid-flow-row gap-[4px] grid-cols-[repeat(auto-fill,minmax(180px,1fr))]">
               <p>
                 Height:{" "}
                 <span className="ml-2 text-black">
                   {decimeters_to_feet(height)} ft
                 </span>
               </p>
-            </div>
-            <div>
               <p>
                 Weight:{" "}
                 <span className="ml-2 text-black">
                   {hectogram_to_pound(weight)} lbs
                 </span>
               </p>
-            </div>
-            <div>
               <p>
                 Shape:{" "}
                 <span className="ml-2 text-black">
                   {uppercase_first_letter(shape)}
                 </span>
               </p>
-            </div>
-            <div>
               <p>
                 Color:{" "}
                 <span className="ml-2 text-black">
                   {uppercase_first_letter(color)}
                 </span>
               </p>
-            </div>
-            <div>
               <p>
                 Gender:{" "}
-                {genderless ? (
-                  <>Unknown</>
+                {genderRate === -1 ? (
+                  <span className="ml-2 text-black">Unknown</span>
                 ) : (
                   <span className="ml-2 text-black font-bold">
-                    <BsGenderMale className="inline mx-1" />
-                    <BsGenderFemale className="inline mx-1" />
+                    <span className="inline mx-1">
+                      {100 - getPercentageValue(genderRate, 8)}%
+                      <BsGenderMale className="inline mx-1" />
+                    </span>
+                    ,
+                    <span className="inline mx-1">
+                      {getPercentageValue(genderRate, 8)}%
+                      <BsGenderFemale className="inline mx-1" />
+                    </span>
                   </span>
                 )}
               </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Base Experience:{" "}
+                <span className="ml-2 text-black">{baseExp}</span>
+              </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Capture Rate:{" "}
+                <span className="ml-2 text-black">{captureRate} / 255</span>
+              </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Base Hapiness:{" "}
+                <span className="ml-2 text-black">{baseHappiness} / 255</span>
+              </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Hatch Counter:{" "}
+                <span className="ml-2 text-black">{hatchCounter} cycles</span>
+              </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Habitat:{" "}
+                <span className="ml-2 text-black">
+                  {uppercase_first_letter(habitat)}
+                </span>
+              </p>
+              <p className={`${!isShowingMorePokemonPhysicalData && "hidden"}`}>
+                Growth Rate:{" "}
+                <span className="ml-2 text-black">
+                  {uppercase_first_letter(growthRate)}
+                </span>
+              </p>
             </div>
+            <button
+              className="mt-4 text-sm underline italic text-blue-900"
+              onClick={() =>
+                setIsShowingMorePokemonPhysicalData((prev) => !prev)
+              }
+            >
+              {!isShowingMorePokemonPhysicalData
+                ? "Load more ..."
+                : "Hide ... "}
+            </button>
           </div>
           <div className="text-xl my-12">
             <h3 className="uppercase mb-4">Types</h3>
@@ -102,14 +148,14 @@ function UpperComponent({
             <h3 className="text-xl uppercase mb-4">Held Items</h3>
             <div className="flex gap-2 flex-wrap">
               {!heldItem.length ? (
-                <p className="text-center bg-rock px-12 py-1 border-double border-2 border-zinc-600 rounded-lg ">
+                <p className="text-center bg-rock text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg ">
                   Not Applicable
                 </p>
               ) : (
                 <>
                   {heldItem.map((item) => (
-                    <>
-                      <div className="flex items-center justify-center text-center bg-rock px-12 py-1 border-double border-2 border-zinc-600 rounded-lg ">
+                    <React.Fragment key={item.name}>
+                      <div className="flex items-center justify-center text-center bg-rock text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg ">
                         <img src={item.image} className="" />
                         <div>
                           <p>{item.name}</p>
@@ -118,7 +164,7 @@ function UpperComponent({
                           </p>
                         </div>
                       </div>
-                    </>
+                    </React.Fragment>
                   ))}
                 </>
               )}

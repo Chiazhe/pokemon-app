@@ -22,8 +22,6 @@ import { GrStatusUnknown } from "react-icons/gr";
 
 export const image_url_helper = (id) => {
   if (typeof id !== "string") id = JSON.stringify(id);
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
-
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 };
 
@@ -34,6 +32,10 @@ export const pad_zero_in_front_id = (id) => {
 
 export const uppercase_first_letter = (name) => {
   return name?.charAt(0).toUpperCase() + name?.slice(1);
+};
+
+export const getPercentageValue = (val, max) => {
+  return parseInt((val / max) * 100);
 };
 
 export const decimeters_to_feet = (length) => {

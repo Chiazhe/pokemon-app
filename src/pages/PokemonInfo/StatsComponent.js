@@ -5,7 +5,7 @@ import DamageRelation from "./DamageRelation";
 function StatsComponent({ stats, damageRelationsData }) {
   return (
     <div className="gap-8 px-12 py-8 flex justify-evenly items-center flex-wrap bg-zinc-500 dark:bg-slate-900 border-y-2 border-zinc-50">
-      <div className="w-[50%] max-w-[400px]">
+      <div className="w-[90%] sm:w-[50%] max-w-[400px]">
         <p className="text-center text-2xl mx-8">Damage Relations</p>
         <DamageRelation damageRelationsData={damageRelationsData} />
       </div>

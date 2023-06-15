@@ -2,16 +2,9 @@ import React, { Fragment } from "react";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 import PokemonCard from "./PokemonCard";
-import { useAllPokemonData } from "../../hooks/useFetchAllPokemonData";
+import { useAllPokemonData } from "../../hooks/useAllPokemonData";
 
 function Pokemon() {
-  const onSuccess = (pokemonData) => {
-    console.log("side effect after success fetching", pokemonData);
-  };
-  const onError = (pokemonData) => {
-    console.log("side effect after failed fetching", pokemonData);
-  };
-
   const {
     isLoading,
     isError,
@@ -19,7 +12,7 @@ function Pokemon() {
     hasNextPage,
     fetchNextPage,
     isFetching,
-  } = useAllPokemonData(onSuccess, onError);
+  } = useAllPokemonData();
 
   if (isLoading) {
     return <Loader />;
@@ -57,8 +50,9 @@ function Pokemon() {
         <button
           disabled={!hasNextPage}
           onClick={fetchNextPage}
-          className="m-[2rem] px-[1.5em] py-[0.5em] rounded-lg border-solid border-2 
-            text-blue-950 bg-indigo-500 hover:bg-indigo-400 dark:hover:bg-indigo-600"
+          className="m-12 px-[1.5em] py-[0.5em] rounded-lg border-solid border-2 
+          border-zinc-900 bg-zinc-400 hover:bg-zinc-300 
+          dark:border-slate-300 dark:bg-slate-900 hover:dark:bg-slate-800"
         >
           Load More Pokémon
         </button>

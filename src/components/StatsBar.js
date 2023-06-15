@@ -15,7 +15,10 @@ export default function StatsBar({ baseValue, statName }) {
 
   return (
     <div className="flex rounded-lg overflow-hidden mb-2">
-      <div className="text-center bg-zinc-400 dark:bg-slate-600 px-[15px] py-[5px] text-[15px] w-[100px] md:w-[150px]">
+      <div
+        className="text-center bg-zinc-400 dark:bg-slate-600 px-[15px] py-[5px] text-[15px] 
+          w-[100px] sm:w-[250px] md:w-[150px]"
+      >
         {statName}
       </div>
       <div className="bg-zinc-300 dark:bg-slate-500 flex items-center justify-center px-[15px] py-[5px] w-[225px] md:w-[400px]">

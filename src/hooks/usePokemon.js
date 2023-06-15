@@ -23,9 +23,6 @@ export const usePokemon = (pokemonName) => {
         delete data.location_area_encounters;
         return data;
       },
-      // onSuccess: (data) => {
-      //   console.log(data);
-      // },
     }
   );
 
@@ -48,7 +45,7 @@ export const usePokemon = (pokemonName) => {
       return data?.damage_relations;
     }) || [];
   const damageRelationsData = damageRelations?.reduce((acc, obj) => {
-    if (!obj) return;
+    if (!obj || !acc) return;
     Object.entries(obj).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         if (!acc[key]) {
@@ -106,7 +103,10 @@ export const usePokemon = (pokemonName) => {
   const prevNextDataisError = fetchedPrevNextData.some(
     (query) => query.isError
   );
-  const prevNextData = fetchedPrevNextData.map((data) => data.data);
+  const prevNextData = fetchedPrevNextData?.map((data) => data.data);
+  const cleanedPrevNextData = prevNextData?.map((poke) => {
+    return { name: poke?.name, id: poke?.id };
+  });
 
   // 4. Fetch Held Item
   const heldItemsQueries =
@@ -119,7 +119,6 @@ export const usePokemon = (pokemonName) => {
   const itemDataisLoading = fetchedItemData.some((query) => query.isLoading);
   const itemDataisError = fetchedItemData.some((query) => query.isError);
   const itemData = fetchedItemData?.map((data) => {
-    console.log(data.data);
     if (!data.data) return;
     const desc = data.data.effect_entries.filter(function (el) {
       return el.language.name === "en";
@@ -151,8 +150,8 @@ export const usePokemon = (pokemonName) => {
     informationData,
     typeData,
     abilityData,
-    prevPokemon: prevNextData[0],
-    nextPokemon: prevNextData[1],
+    prevPokemon: cleanedPrevNextData[0],
+    nextPokemon: cleanedPrevNextData[1],
     itemData,
     damageRelationsData,
   };

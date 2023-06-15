@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsMoon, BsSun } from "react-icons/bs";
 import { TbPokeball } from "react-icons/tb";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : null
   );
@@ -40,20 +42,20 @@ function Navbar() {
 
   return (
     <nav
-      className="flex justify-between w-full py-6 px-12 font-xl border-b-[0.5px] border-zinc-900
-      bg-zinc-400 dark:border-slate-300 dark:bg-slate-900"
+      className="relative flex justify-between w-full py-6 px-[5vw] font-xl border-b-[1px] border-zinc-900
+      bg-zinc-400 dark:border-slate-300 dark:bg-slate-900 z-[20]"
     >
-      <h1 className="flex items-center text-3xl hover:cursor-pointer hover:text-zinc-700 dark:hover:text-gray-300 ">
+      <h1
+        onClick={() => navigate("/")}
+        className="flex items-center text-3xl hover:cursor-pointer hover:text-zinc-700 dark:hover:text-gray-300 "
+      >
         <TbPokeball className="mx-2" />
         <span>PokéApp</span>
       </h1>
-      <div className="items-center gap-3 text-lg hidden sm:flex ">
-        <h3>Pokédex</h3>
-        <h3>Types</h3>
-        <h3>Locations</h3>
+      <div className="items-center gap-3 text-lg flex ">
         {options?.map((option) => {
           return (
-            <>
+            <React.Fragment key={option.text}>
               {theme === option.text && (
                 <button
                   key={option.text}
@@ -66,7 +68,7 @@ function Navbar() {
                   {option.icon}
                 </button>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </div>
