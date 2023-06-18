@@ -10,7 +10,7 @@ function PokemonCard({ id, name }) {
   const navigate = useNavigate();
   return (
     <div
-      className="flex items-center justify-center flex-col text-center p-[20px] border-solid rounded bg-zinc-200
+      className="flex items-center justify-center flex-col text-center p-[10px] md:p-[20px] border-solid rounded bg-zinc-200
       dark:bg-slate-600 hover:scale-110 hover:cursor-pointer duration-500"
     >
       <div

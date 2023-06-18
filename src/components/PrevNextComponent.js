@@ -24,7 +24,7 @@ function PrevNextComponent({ data: pokemon, isPrev }) {
       }
     >
       <img
-        className="absolute h-[100%] bottom-0 xs:h-[105%] sm:h-[130%] md:h-[140%] lg:h-[25vw] right-0 duration-300 drop-shadow-4xl dark:drop-shadow-4xl-dark 
+        className="absolute h-[100%] bottom-0 xs:h-[105%] sm:h-[130%] md:h-[140%] lg:h-[170%] right-0 duration-300 drop-shadow-4xl dark:drop-shadow-4xl-dark 
           group-[.pokemon-image]:hover:bottom-[15px] sm:group-[.pokemon-image]:hover:bottom-[20px]
           md:group-[.pokemon-image]:hover:bottom-[25px] lg:group-[.pokemon-image]:hover:bottom-[40px]"
         src={image_url_helper(pokemon.id)}
@@ -32,11 +32,11 @@ function PrevNextComponent({ data: pokemon, isPrev }) {
         style={isPrev ? { left: "0" } : {}}
       />
       <div
-        className="py-2 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[400px] min-h-0 flex flex-col z-[6px]"
+        className="z-10 py-2 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[400px] min-h-0 flex flex-col"
         style={isPrev ? { textAlign: "right" } : {}}
       >
         <h4 className="text-xs sm:text-sm uppercase tracking-[2px] mb-2">
-          {isPrev ? "Prev Pokemon" : "Next Pokemon"}
+          {isPrev ? "Previous" : "Next"}
         </h4>
         <h2 className="text-xl sm:text-4xl uppercase tracking-[1px] font-prevNextName font-semibold leading-4 ">
           {pokemon.name}
