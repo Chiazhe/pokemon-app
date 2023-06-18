@@ -6,7 +6,7 @@ export const fetchData = async (url) => {
 };
 
 export const fetchAllPokemon = async ({
-  pageParam = "https://pokeapi.co/api/v2/pokemon/?limit=200",
+  pageParam = "https://pokeapi.co/api/v2/pokemon/?limit=50",
 }) => {
   return await axios.get(pageParam).then((res) => res.data);
 };
