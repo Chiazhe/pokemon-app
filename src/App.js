@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Route, Routes } from "react-router-dom";
 import Pokemon from "./pages/Pokemon";
 import PokemonInfo from "./pages/PokemonInfo";
+import PokemonType from "./pages/PokemonType";
 import Navbar from "./components/Navbar";
 import General from "./components/General";
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" element={<Pokemon />} />
           {/* <Route path="/pokemon" element={<Pokemon />} /> */}
           <Route path="/pokemon/:name" element={<PokemonInfo />} />
+          <Route path="/type" element={<PokemonType />} />
           <Route path="*" element={<General />} />
         </Routes>
         <ReactQueryDevtools />
