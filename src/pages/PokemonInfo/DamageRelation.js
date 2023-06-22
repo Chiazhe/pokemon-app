@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { typeImage } from "../../helpers";
 import DamageRelationItem from "../../components/DamageRelationItem";
 
 function DamageRelation({ damageRelationsData }) {
@@ -9,12 +8,12 @@ function DamageRelation({ damageRelationsData }) {
     <div>
       <div
         className="flex items-center justify-center gap-2 p-1 rounded-lg mb-4 w-auto px-0
-        bg-gray-300/50 dark:bg-slate-600 shadow-lg shadow-300/50"
+        bg-gray-200 dark:bg-slate-600 shadow-lg shadow-300/50"
       >
         <button
           onClick={() => setIsShowingAttack(true)}
           className={`px-6 py-2 rounded-lg  ${
-            isShowingAttack ? "bg-gray-100 dark:bg-slate-400" : ""
+            isShowingAttack ? "bg-gray-400 dark:bg-slate-400" : ""
           }`}
         >
           Attack
@@ -22,13 +21,13 @@ function DamageRelation({ damageRelationsData }) {
         <button
           onClick={() => setIsShowingAttack(false)}
           className={`px-6 py-2 rounded-lg  ${
-            !isShowingAttack ? "bg-gray-100 dark:bg-slate-400" : ""
+            !isShowingAttack ? "bg-gray-400 dark:bg-slate-400" : ""
           }`}
         >
           Defense
         </button>
       </div>
-      <div className={`bg-gray-100/50 dark:bg-slate-600 p-6 rounded-lg`}>
+      <div className={`bg-gray-200 dark:bg-slate-600 p-6 rounded-lg`}>
         <div className={`${!isShowingAttack ? "hidden" : ""}`}>
           <div>
             Double Damage To:

@@ -4,7 +4,7 @@ import {
   image_url_helper,
   pad_zero_in_front_id,
   uppercase_first_letter,
-} from "../../helpers";
+} from "../helpers";
 
 function PokemonCard({ id, name }) {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "../../components/PokemonCard";
 import { useAllPokemonData } from "../../hooks/useAllPokemonData";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -55,6 +55,7 @@ function Pokemon() {
           </button>
         </div>
       </div>
+      <p className="text-2xl mb-2">All Pokémon</p>
       <div className="grid gap-[4rem] pb-16 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
         {pokemonData?.pages.map((page, i) => {
           return (
@@ -73,13 +74,6 @@ function Pokemon() {
                     name={pokemon.name}
                   />
                 ))}
-              {/* {page.results.map((pokemon) => (
-                <PokemonCard
-                  key={pokemon.name}
-                  id={pokemon.url.split("/").slice(-2, -1)[0]}
-                  name={pokemon.name}
-                />
-              ))} */}
             </Fragment>
           );
         })}

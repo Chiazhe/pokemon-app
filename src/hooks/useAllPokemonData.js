@@ -8,6 +8,7 @@ export const useAllPokemonData = () => {
       const lastPokemonId =
         lastPokemon.url.split("/")[lastPokemon.url.split("/").length - 2];
       if (lastPokemonId > 1010) return null;
+      // console.log(lastPage.next);
       return lastPage.next;
     },
     staleTime: Infinity,

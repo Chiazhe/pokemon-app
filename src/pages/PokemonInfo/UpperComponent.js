@@ -8,6 +8,7 @@ import {
   uppercase_first_letter,
 } from "../../helpers";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function UpperComponent({
   id,
@@ -28,6 +29,7 @@ function UpperComponent({
   growthRate,
   heldItem,
 }) {
+  const navigate = useNavigate();
   const [
     isShowingMorePokemonPhysicalData,
     setIsShowingMorePokemonPhysicalData,
@@ -135,8 +137,10 @@ function UpperComponent({
             <div className="flex gap-2 flex-wrap">
               {types.map((type) => (
                 <div
+                  onClick={() => navigate(`/type/${type.name}`)}
                   key={type.name}
-                  className={`flex items-center justify-evenly gap-1 text-base text-black px-12 py-1 border-double border-2 border-zinc-600 rounded-lg bg-${type.name}`}
+                  className={`hover:cursor-pointer flex items-center justify-evenly gap-1 text-base text-black px-12 py-1 
+                    border-double border-2 border-zinc-600 rounded-lg bg-${type.name}`}
                 >
                   {typeImage(type.name)}{" "}
                   {type.name[0].toUpperCase() + type.name.slice(1)}

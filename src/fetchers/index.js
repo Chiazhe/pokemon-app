@@ -11,12 +11,18 @@ export const fetchAllPokemon = async ({
   return await axios.get(pageParam).then((res) => res.data);
 };
 
+export const fetchType = async (name) => {
+  return await axios
+    .get(`https://pokeapi.co/api/v2/type/${name}`)
+    .then((res) => res.data);
+};
+
 export const fetchIndividualPokemon = async (pokemonName) => {
   if (!pokemonName) return;
-  console.log(
-    "fetching ... ",
-    "https://pokeapi.co/api/v2/pokemon/" + pokemonName
-  );
+  // console.log(
+  //   "fetching ... ",
+  //   "https://pokeapi.co/api/v2/pokemon/" + pokemonName
+  // );
   return await axios
     .get("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
     .then((res) => res.data);
@@ -24,10 +30,10 @@ export const fetchIndividualPokemon = async (pokemonName) => {
 
 export const fetchPokemonSpecies = async (pokemonName) => {
   if (!pokemonName) return;
-  console.log(
-    "fetching ... ",
-    "https://pokeapi.co/api/v2/pokemon-species/" + pokemonName
-  );
+  // console.log(
+  //   "fetching ... ",
+  //   "https://pokeapi.co/api/v2/pokemon-species/" + pokemonName
+  // );
   return await axios
     .get("https://pokeapi.co/api/v2/pokemon-species/" + pokemonName)
     .then((res) => res.data);

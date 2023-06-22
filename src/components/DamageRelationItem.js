@@ -1,7 +1,9 @@
 import React from "react";
 import { typeImage, uppercase_first_letter } from "../helpers";
+import { useNavigate } from "react-router-dom";
 
 function DamageRelationItem({ type }) {
+  const navigate = useNavigate();
   if (type === "NIL") {
     return (
       <div
@@ -13,7 +15,9 @@ function DamageRelationItem({ type }) {
   }
   return (
     <div
-      className={`flex items-center gap-2 py-1 px-2 text-black bg-${type} rounded border-2 border-solid border-black`}
+      onClick={() => navigate(`/type/${type}`)}
+      className={`flex items-center gap-2 py-1 px-2 text-black bg-${type} 
+        rounded border-2 border-solid border-black hover:cursor-pointer`}
     >
       {typeImage(type)} <div>{uppercase_first_letter(type)}</div>
     </div>

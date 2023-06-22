@@ -11,7 +11,7 @@ export default function StatsBar({ baseValue, statName }) {
     if (filled < Math.floor((baseValue / max) * 100)) {
       setTimeout(() => setFilled((prev) => (prev += 1)), 5);
     }
-  }, [filled]);
+  }, [filled, max, baseValue]);
 
   return (
     <div className="flex rounded-lg overflow-hidden mb-2">

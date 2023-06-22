@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/" element={<Pokemon />} />
           {/* <Route path="/pokemon" element={<Pokemon />} /> */}
           <Route path="/pokemon/:name" element={<PokemonInfo />} />
-          <Route path="/type" element={<PokemonType />} />
+          <Route path="/type/:type" element={<PokemonType />} />
           <Route path="*" element={<General />} />
         </Routes>
         <ReactQueryDevtools />

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 import { usePokemon } from "../../hooks/usePokemon";

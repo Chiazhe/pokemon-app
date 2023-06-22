@@ -25,6 +25,7 @@ function EvolutionComponent({ evolution }) {
                   <img
                     className="animate-up-down"
                     src={image_url_helper(pokemon[0])}
+                    alt={uppercase_first_letter(pokemon[1])}
                   />
                 </div>
                 <div className="text-center text-black">

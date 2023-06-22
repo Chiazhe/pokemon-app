@@ -47,12 +47,12 @@ export const usePokemonSpecies = (pokemonName) => {
       select: (data) => {
         let evoData = data.chain;
         const evoChain = [];
-        let curr = null;
+        // let curr = null;
         while (evoData) {
           const name = evoData.species.name;
           const id = evoData.species.url.split("/").slice(-2)[0];
           // if (curr && parseInt(id) !== curr + 1) break;
-          curr = parseInt(id);
+          // curr = parseInt(id);
           evoChain.push([id, name]);
           evoData = evoData.evolves_to[0];
         }
